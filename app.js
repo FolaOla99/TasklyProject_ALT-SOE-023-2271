@@ -6,6 +6,7 @@ const rateLimit = require('express-rate-limit')
 const { connectToMongoDB } = require('./db')
 const userRoute = require('./users/user.router')
 const organizationRoute = require('./organization/organization.router')
+const boardRouter = require('./board/board.router')
 
 dotenv.config()
 
@@ -64,5 +65,8 @@ app.get("/view-organizations", organizationRoute)
 app.get("/create-organization", organizationRoute) 
 // Create Organization
 app.post("/create-organization", organizationRoute)
+
+// Use the board router
+app.use('/boards', boardRouter);
 
 module.exports = app
